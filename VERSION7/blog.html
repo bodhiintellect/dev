@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>WEBSITE</title>
+  <script src="https://unpkg.com/vue"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+		body {
+			font-family: 'Noto Sans', sans-serif;
+		}
+		.welcome {
+			border-radius: 10px;
+			min-width: 345px;
+			height: 100%;
+			box-shadow: 1px 2px 4px #ffffff80;
+			top: 11px;
+			position: relative;
+		}
+		@media only screen and (min-width: 767px) {
+			body {
+			/* The file size of this background image is 93% smaller
+			to improve page load speed on mobile internet connections */
+			background-image: url("BlogAssets/CoffeeSplash.jpeg");
+			}
+			#nature {
+				display: flex;
+				flex-direction: column;
+			}
+			.welcome {
+				margin-top: 20px;
+				border-radius: 10px;
+				min-width: inherit;
+				height: inherit; 
+				box-shadow: 1px 2px 4px #ffffff80;
+				top: 11px;
+				position: relative;
+			}
+		}
+		.refresh {
+		    background: white;
+		    border-radius: 2px;
+		    padding: 8px 16px;
+			color: #a9a9a9;
+			cursor: pointer;
+			display: inline-flex;
+			margin-right:10px;
+			/* display: none; */
+		}
+		
+
+		.nature {  
+		/* This section calls the slideInFromLeft animation we defined above */
+		animation: 2s ease-out 0s 1 slideInFromLeft;
+		}
+		.nature {
+			padding: 20px 40px;
+			font-weight: 700;
+			font-size: 120px;
+			/* text-align: center; */
+			color: #ffffff;
+			display: flex;
+			border-radius: 4px;
+			text-transform: capitalize;
+			top: 124px;
+		}
+
+		body.edit .nature {
+			box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			text-shadow: 2px 2px 3px #c4c4c4;
+			background-color: #ffffff2b;
+		}
+		.show {
+			visibility: hidden;
+			position: absolute;
+		}
+		body.edit .show {
+			visibility: visible !important;
+		}
+		.show-right, .show-left, .show-bottom, .show-top {
+			background: white;
+			border-radius: 2px;
+			color: #a9a9a9;
+			cursor: pointer;
+			display: flex;
+			text-decoration: none;
+			padding: 7px;
+			text-shadow: none;
+		}
+		.show-right {
+			right: -40px;
+			top: 1px;
+		}
+		.show-left {
+			right: -40px;
+			top: 43px;
+		}
+		.show-bottom {
+			right: 44px;
+			top: -39px;
+		}
+		.show-top {
+			right: 1px;
+			top: -39px;
+		}
+		.show:hover {
+			background: cornflowerblue;
+   		    color: white;
+		}
+		.refresh:hover {
+			color: gold;
+		}
+		#clone {
+			border-radius: 3px;
+			font-family: monospace;
+			font-size: inherit;
+			padding: 20px;
+			color: grey;
+			line-height: 29px;
+		}
+		p > code,
+		li > code,
+		dd > code,
+		td > code {
+			background: #ffeff0;
+			word-wrap: break-word;
+			box-decoration-break: clone;
+			padding: .1rem .3rem .2rem;
+			border-radius: .2rem;
+		}
+		
+		.cancelCode {
+			top:2px;
+			right: 5px;
+		}
+		.button {
+			font-size: 15px;
+			text-transform: capitalize;
+			color: darkyellow;
+			cursor: pointer;
+			padding: 20px 30px;
+			margin-top: 20px;
+			background: cornflowerblue;
+			color: white;
+			display: flex;
+			font-weight: 600;
+			text-align: center;
+			border-radius: 4px;
+		}
+		.button:hover {
+			color : cornflowerblue;
+			background: white;
+		}
+		
+	</style>
+  
+</head>
+
+<body style="background-size: cover; background-position: center center; background-attachment: fixed; background-repeat:no-repeat; background-image: url('BlogAssets/visiting.jpeg')">
+
+	<section id="app" class="fog magazine">
+		<section style="display: inline-flex;">
+			 <a class="refresh"  onclick="editmagazine()">
+				Back
+				<span class="material-icons">
+					history
+				</span>
+			</a> 
+			
+		</section>
+		
+		<section v-for="Vue in notes" class='nature' id="nature" style="display: flex; " >
+				
+		
+			
+
+		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480;">
+				
+				<span style="font-weight:00;">{{ Vue.title }}</span> <br><br>
+				<span style="font-weight:400; color: cornflowerblue;"> By  &nbsp; : {{ Vue.author }}<br><br></span>
+				{{ Vue.subtitle }} <br><br>
+				{{ Vue.Content }}
+                 <br>
+                 <br>
+				 <input type="color" onchange="changecolor(this.value)" class="show" id="favcolor">
+				 <br><br><br>
+				 <img :src="Vue.blogimage"  style="
+					width: 100%;
+					height: auto;
+					max-width: 600px;
+					margin: auto;
+					display: block;
+					border-radius: 4px;">
+				<span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span>
+	
+			</article>
+			<!-- <img src="welcome.png" alt="welcome" class="welcome" contenteditable="false" style=""> -->
+		</section>
+	</section>
+	<script type="text/javascript">
+	function editmagazine() {
+		// window.document.body.className = 'edit'
+		// document.querySelector('.nature').setAttribute('contenteditable', 'true')
+		window.history.back()
+	}
+	function moveRight() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] + 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.right.split('p')[0] + 10
+		console.info(value)
+		element.style.right = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] - 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveTop() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] - 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function moveBottom() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] + 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function saveFile() {
+		// Wish
+		
+	}
+	function closeCode() {
+		document.getElementById("clone").innerHTML = ""
+		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
+		document.body.classList.remove('edit')
+	}
+	function changecolor(color) {
+		document.getElementsByClassName('content')[0].style.color = color
+	}
+
+
+
+	var app = new Vue({
+      el: '#app',
+      data: {
+        notes: [
+        { id: 1, title: 'Website Blog', subtitle: 'Our Story', author: "Bodhi Intellect",
+        Content: "Bodhi Intellect is a group of dynamic young professionals who excel in their own field. It includes Psychologists, Yoga Trainers, Nutritionals, IT Experts, Communication and soft skill trainers and Mentors. We are training people on Leadership Development, Marketing and Sales, Team building skills, Communication and Interpersonal effectiveness. We have well devised strategies, tools and course plan much different from the conventional workshops. Being a learning partner to every firm, we focus on training their people not only to achieve best results, but also to live an enlightened life so that the employees will be an asset to the organisation. Our aim is to develop multifaceted and goal oriented professionals who deliver their best in the work place. Our tailor made solutions for each business verticals will identify the talents in the work force, nurture it through fine crafted techniques and will point it to focus on organizational goals in a smart way. We also aim to provide workshops for children to improve their learning and interactive skills through a set of signature programs. We offer counselling services through webinars and seminars on day to day issues faced by the kids and adults. We are using technology at its best to train mind and body. Our program is designed by incorporating well structured group of sessions to develop the in depth abilities, skills interactions and activities. We also give the participants a fine set of values to follow the entire life so that they will perfectly deliver the best to themselves and around.",
+		blogimage: "BlogAssets/visitingcard.png",
+	},
+        { id: 2, title: 'Conversation Ai', subtitle: 'User Story CAI', author: "Syamnath S",
+        Content: "The conversation Ai is a communication program that is inteted to activate communication between people. The main aim of the program is to initiate a channel of communication with persons groups etc. This methord is proven its effectiveness.",
+		blogimage: "BlogAssets/welcome.png",
+    }
+        ],
+      },
+    })
+	</script>
+	
+</body>
+</html>
