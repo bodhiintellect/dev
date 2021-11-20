@@ -5,7 +5,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>WEBSITE</title>
+  <title>Blog</title>
   <script src="https://unpkg.com/vue"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +53,12 @@
 			display: inline-flex;
 			margin-right:10px;
 			/* display: none; */
+			margin-left: 40px;
 		}
 		
+		/* .refresh .material-icons {
+			margin-left: 15px;
+		} */
 
 		.nature {  
 		/* This section calls the slideInFromLeft animation we defined above */
@@ -169,7 +173,7 @@
 	<section id="app" class="fog magazine">
 		<section style="display: inline-flex;">
 			 <a class="refresh"  onclick="editmagazine()">
-				Back
+				Back &nbsp;
 				<span class="material-icons">
 					history
 				</span>
@@ -182,7 +186,7 @@
 		
 			
 
-		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480;">
+		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480; line-height: 24px;">
 				
 				<span style="font-weight:00;">{{ Vue.title }}</span> <br><br>
 				<span style="font-weight:400; color: cornflowerblue;"> By  &nbsp; : {{ Vue.author }}<br><br></span>
@@ -270,7 +274,7 @@
 		blogimage: "BlogAssets/visitingcard.png",
 	},
         { id: 2, title: 'Conversation Ai', subtitle: 'User Story CAI', author: "Syamnath S",
-        Content: "The conversation Ai is a communication program that is inteted to activate communication between people. The main aim of the program is to initiate a channel of communication with persons groups etc. This methord is proven its effectiveness.",
+        Content: "The conversation Ai is a communication program that is intended to activate communication between people. The main aim of the program is to initiate a channel of communication with persons groups etc. This methord is proven its effectiveness.",
 		blogimage: "BlogAssets/welcome.png",
     }
         ],
