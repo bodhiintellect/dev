@@ -187,7 +187,14 @@
 			
 
 		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 40px 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480; line-height: 24px;">
-				
+				<img :src="Vue.blogimage"  style="
+					width: 100%;
+					height: auto;
+					max-width: 600px;
+					margin: auto;
+					display: block;
+					border-radius: 4px;">
+					
 				<span style="font-weight:00;">{{ Vue.title }}</span> <br><br>
 				<span style="font-weight:400; color: cornflowerblue;"> By  &nbsp; : {{ Vue.author }}<br><br></span>
 				{{ Vue.subtitle }} <br><br>
@@ -196,13 +203,7 @@
                  <br>
 				 <input type="color" onchange="changecolor(this.value)" class="show" id="favcolor">
 				 <br><br><br>
-				 <img :src="Vue.blogimage"  style="
-					width: 100%;
-					height: auto;
-					max-width: 600px;
-					margin: auto;
-					display: block;
-					border-radius: 4px;">
+				 
 				<span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span>
 	
 			</article>
