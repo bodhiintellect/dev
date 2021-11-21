@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Blog</title>
+  <link rel="icon" href="../img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="../img/favicon-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon-precomposed" href="../img/favicon-180x180.png" />
+  <meta name="msapplication-TileImage" content="../img/favicon-270x270.png" />
+  <script src="https://unpkg.com/vue"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+		body {
+			font-family: 'Noto Sans', sans-serif;
+		}
+		#App {
+			width: 596px;
+		}
+		.welcome {
+			border-radius: 10px;
+			min-width: 345px;
+			height: 100%;
+			box-shadow: 1px 2px 4px #ffffff80;
+			top: 11px;
+			position: relative;
+		}
+		@media only screen and (min-width: 767px) {
+			body {
+			/* The file size of this background image is 93% smaller
+			to improve page load speed on mobile internet connections */
+			background-image: url("BlogAssets/CoffeeSplash.jpeg");
+			}
+			#nature {
+				display: flex;
+				flex-direction: column;
+			}
+			.welcome {
+				margin-top: 20px;
+				border-radius: 10px;
+				min-width: inherit;
+				height: inherit; 
+				box-shadow: 1px 2px 4px #ffffff80;
+				top: 11px;
+				position: relative;
+			}
+		}
+		.refresh {
+		    background: white;
+		    border-radius: 2px;
+		    padding: 8px 16px;
+			color: #cdcdcd;
+			cursor: pointer;
+			display: inline-flex;
+			margin-right:10px;
+			/* display: none; */
+			margin-left: 20px;
+			text-decoration: none;
+			position: absolute;
+			left: 2px;
+			top: 9px;
+			font-size: 14px;
+		}
+		
+		/* .refresh .material-icons {
+			margin-left: 15px;
+		} */
+
+		.nature {  
+		/* This section calls the slideInFromLeft animation we defined above */
+		animation: 2s ease-out 0s 1 slideInFromLeft;
+		}
+		.nature {
+			/* padding: 20px; */
+			font-weight: 700;
+			font-size: 120px;
+			/* text-align: center; */
+			color: #ffffff;
+			display: flex;
+			/* border-radius: 4px; */
+			text-transform: capitalize;
+			width: 596px;
+			padding-top: 1px;
+			/* top: 124px; */
+		}
+
+		body.edit .nature {
+			/* box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%); */
+			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			/* text-shadow: 2px 2px 3px #c4c4c4; */
+			background-color: #ffffff2b;
+		}
+		.show {
+			visibility: hidden;
+			position: absolute;
+		}
+		body.edit .show {
+			visibility: visible !important;
+		}
+		.show-right, .show-left, .show-bottom, .show-top {
+			background: white;
+			border-radius: 2px;
+			color: #a9a9a9;
+			cursor: pointer;
+			display: flex;
+			text-decoration: none;
+			padding: 7px;
+			text-shadow: none;
+		}
+		.show-right {
+			right: -40px;
+			top: 1px;
+		}
+		.show-left {
+			right: -40px;
+			top: 43px;
+		}
+		.show-bottom {
+			right: 44px;
+			top: -39px;
+		}
+		.show-top {
+			right: 1px;
+			top: -39px;
+		}
+		.show:hover {
+			background: cornflowerblue;
+   		    color: white;
+		}
+		.refresh:hover {
+			color: gold;
+		}
+		#clone {
+			border-radius: 3px;
+			font-family: monospace;
+			font-size: inherit;
+			padding: 20px;
+			color: grey;
+			line-height: 29px;
+		}
+		p > code,
+		li > code,
+		dd > code,
+		td > code {
+			background: #ffeff0;
+			word-wrap: break-word;
+			box-decoration-break: clone;
+			padding: .1rem .3rem .2rem;
+			border-radius: .2rem;
+		}
+		
+		.cancelCode {
+			top:2px;
+			right: 5px;
+		}
+		.button {
+			font-size: 15px;
+			text-transform: capitalize;
+			color: darkyellow;
+			cursor: pointer;
+			padding: 20px 30px;
+			margin-top: 20px;
+			background: cornflowerblue;
+			color: white;
+			display: flex;
+			font-weight: 600;
+			text-align: center;
+			border-radius: 4px;
+		}
+		.button:hover {
+			color : cornflowerblue;
+			background: white;
+		}
+		table td {
+			padding: 10px;
+		}
+		table thead td {
+			font-weight: 600;
+			border-bottom: 1px solid #ccc;
+			margin-bottom:10px;
+		}
+		table tbody td {
+			font-weight: 300;
+			border-bottom: 1px solid #ccc;
+			margin-bottom:10px;
+		}
+		
+	</style>
+  
+</head>
+
+<body style="background-size: cover; background-position: center center; background-attachment: fixed; background-repeat:no-repeat; background-image: url('BlogAssets/visiting.jpeg')">
+
+	<section id="app" style="margin-left: 40px;"class="fog magazine">
+		<section>
+			 <!-- <a class="refresh"  onclick="editmagazine()">
+				Back &nbsp;
+				<span class="material-icons">
+					history
+				</span>
+			</a>  -->
+			<a class="refresh"  onclick="window.print()">
+				Print &nbsp;
+				<span class="material-icons">
+					print
+				</span>
+				
+			</a> 
+			<img src="images/invoiceheader.png" class="img-responsive" alt=" INVOICE HEADER">
+		</section>
+		
+		<section v-for="Vue in notes" class='nature' id="nature" style="display: flex; " >
+				
+		
+			
+
+		 	<article contenteditable="true" class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 20px; ">
+				
+					
+				<span style="font-weight:600; text-align:center; display: block;">{{ Vue.title }}</span> <br>
+
+				<span style="font-weight:400; color: cornflowerblue;"> Bill to  &nbsp; : {{ Vue.Client }}<br></span>
+				{{ Vue.Address1 }} , 
+				{{ Vue.Address2 }} <br>
+				{{ Vue.Addressplace }}, 
+				{{ Vue.Addressstate }} <br>
+				{{ Vue.Addresscountry }} <br>
+				Ph: {{ Vue.Clientphone }} <br>
+		
+                 <br>
+
+				 <table width="556px" border="0" padding="5px" border-color="#c9c9c9" cellspacing="1">
+					 <thead>
+						 <tr>
+							 <td>Id</td>
+							 <td>Particular</td>
+							 <td>Amount</td>
+						 </tr>
+					 </thead>
+					 <tbody>
+						<tr>
+							<td>1</td>
+							<td>{{ Vue.plan1 }}</td>
+							<td>{{ Vue.price1 }} ₹</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>{{ Vue.plan2 }}</td>
+							<td>{{ Vue.price2 }} ₹</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>{{ Vue.plan3 }}</td>
+							<td>{{ Vue.price3 }} ₹</td>
+						</tr>
+					 </tbody>
+				 </table>
+				 <h4 style="text-align:right;">Sub Total: {{ Vue.subtotal }}. ₹</h4>
+				 <h2 style="text-align:right;"> Total: {{ Vue.subtotal }}. ₹</h2>
+				 <br><br><br>
+				 
+				<span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span>
+	
+			</article>
+			<!-- <img src="welcome.png" alt="welcome" class="welcome" contenteditable="false" style=""> -->
+		</section>
+		<img src="images/invoicefooter.png" class="img-responsive" alt=" INVOICE FOOTER">
+	</section>
+	<script type="text/javascript">
+	function editmagazine() {
+		// window.document.body.className = 'edit'
+		// document.querySelector('.nature').setAttribute('contenteditable', 'true')
+		window.history.back()
+	}
+	function moveRight() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] + 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.right.split('p')[0] + 10
+		console.info(value)
+		element.style.right = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] - 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveTop() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] - 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function moveBottom() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] + 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function saveFile() {
+		// Wish
+		
+	}
+	function closeCode() {
+		document.getElementById("clone").innerHTML = ""
+		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
+		document.body.classList.remove('edit')
+	}
+	function changecolor(color) {
+		document.getElementsByClassName('content')[0].style.color = color
+	}
+
+
+
+	var app = new Vue({
+      el: '#app',
+      data: {
+        notes: [
+        { id: 1, title: 'Invoice', subtitle: 'Our Story', 
+		Client: "Enter Client Name",
+		Address1: "Street Address",
+		Address2: "Place Address ",
+		Addressplace: "Trivandrum",
+		Addressstate: "Kerala",
+		Addresscountry: "India",
+		Clientphone: "+91 1111111111",
+        Content: "Bodhi Intellect is a group of dynamic young professionals who excel in their own field. It includes Psychologists, Yoga Trainers, Nutritionals, IT Experts, Communication and soft skill trainers and Mentors. We are training people on Leadership Development, Marketing and Sales, Team building skills, Communication and Interpersonal effectiveness. We have well devised strategies, tools and course plan much different from the conventional workshops. Being a learning partner to every firm, we focus on training their people not only to achieve best results, but also to live an enlightened life so that the employees will be an asset to the organisation. Our aim is to develop multifaceted and goal oriented professionals who deliver their best in the work place. Our tailor made solutions for each business verticals will identify the talents in the work force, nurture it through fine crafted techniques and will point it to focus on organizational goals in a smart way. We also aim to provide workshops for children to improve their learning and interactive skills through a set of signature programs. We offer counselling services through webinars and seminars on day to day issues faced by the kids and adults. We are using technology at its best to train mind and body. Our program is designed by incorporating well structured group of sessions to develop the in depth abilities, skills interactions and activities. We also give the participants a fine set of values to follow the entire life so that they will perfectly deliver the best to themselves and around.",
+		blogimage: "BlogAssets/visitingcard.png",
+		subtotal: "1,20,000",
+		plan1: "Bodhi Insight",
+		plan2: "Bodhi Outreach",
+		plan3: "Bodhi Inspire",
+		price1: "20000",
+		price2: "50000",
+		price3: "50000",
+	}
+        ],
+      },
+    })
+	</script>
+	
+</body>
+</html>
