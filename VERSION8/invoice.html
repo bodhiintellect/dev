@@ -63,8 +63,8 @@
 			margin-left: 20px;
 			text-decoration: none;
 			position: absolute;
-			left: 2px;
-			top: 9px;
+			left: 33px;
+			top: 15px;
 			font-size: 14px;
 		}
 		
@@ -205,7 +205,7 @@
 					history
 				</span>
 			</a>  -->
-			<a class="refresh"  onclick="window.print()">
+			<a class="refresh"  onclick="printinv(this)">
 				Print &nbsp;
 				<span class="material-icons">
 					print
@@ -240,24 +240,24 @@
 						 <tr>
 							 <td>Id</td>
 							 <td>Particular</td>
-							 <td>Amount</td>
+							 <td style="text-align:right;">Amount</td>
 						 </tr>
 					 </thead>
 					 <tbody>
 						<tr>
 							<td>1</td>
 							<td>{{ Vue.plan1 }}</td>
-							<td>{{ Vue.price1 }} ₹</td>
+							<td style="text-align:right;">{{ Vue.price1 }} ₹</td>
 						</tr>
 						<tr>
 							<td>2</td>
 							<td>{{ Vue.plan2 }}</td>
-							<td>{{ Vue.price2 }} ₹</td>
+							<td style="text-align:right;">{{ Vue.price2 }} ₹</td>
 						</tr>
 						<tr>
 							<td>3</td>
 							<td>{{ Vue.plan3 }}</td>
-							<td>{{ Vue.price3 }} ₹</td>
+							<td style="text-align:right;">{{ Vue.price3 }} ₹</td>
 						</tr>
 					 </tbody>
 				 </table>
@@ -316,6 +316,10 @@
 	function saveFile() {
 		// Wish
 		
+	}
+	function printinv(element) {
+		element.style.display = "none"
+		window.print()
 	}
 	function closeCode() {
 		document.getElementById("clone").innerHTML = ""
