@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="../img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="../img/favicon-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon-precomposed" href="../img/favicon-180x180.png" />
+  <meta name="msapplication-TileImage" content="../img/favicon-270x270.png" />
+  <title>Our Blog</title>
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700|Poppins:300,400,400i,600|Source+Sans+Pro:400,400i,600,700,900|Mukta:400,700,800|Oswald:400,600|Lato:400,400i,700|Roboto:300,400,500,700|Roboto+Slab:400,700|Playfair+Display:400,400i,700i,700|Catamaran:300,400,500,600,700,900|Merriweather:400,700|Montserrat:400,500,600|Nunito|Open+Sans:300,400,500,600|Caveat:400,700|Dancing+Script|Libre+Baskerville:400,700"
+    rel="stylesheet">
+  <!-- STYLES -->
+  <!-- Main Style -->
+  <link rel="stylesheet" id="style-main" href="../css/styles-main.css?v=3">
+  <link rel="stylesheet" id="swiper-main" href="../vendors/swiper/swiper.min.css">
+  <link rel="stylesheet" id="lity-main" href="../vendors/lity/lity.min.css">
+  <link rel="stylesheet" id="mediaelementplayer" href="../vendors/mediaelement/mediaelementplayer.min.css">
+  <link rel="stylesheet" id="range" href="../vendors/range/jquery.range.css">
+  <link rel="stylesheet" id="lightgallery" href="../vendors/lightgallery/lightgallery.min.css">
+  <link rel="stylesheet" id="style-link" href="../css/styles-5.css?v=35">
+  <!-- SCRIPTS -->
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.3.0.js" integrity="sha256-/Gj+NlY1u/J2UGzM/B2QrWR01trK8ZZqrD5BdqQUsac=" crossorigin="anonymous"></script>
+  <!-- Swiper -->
+  <script src="../vendors/swiper/swiper.min.js"></script>
+  <!-- Isotope -->
+  <script src="../vendors/isotope/isotope.pkgd.min.js"></script>
+  <!-- Images loaded library -->
+  <script src="../vendors/lazyload/imagesloaded.pkgd.min.js"></script>
+  <!-- MediaElement js library (only for Aheto HTML) -->
+  <script src="../vendors/mediaelement/mediaelement.min.js"></script>
+  <script src="../vendors/mediaelement/mediaelement-and-player.min.js"></script>
+  <!-- Typed animation text -->
+  <script src="../vendors/typed/typed.min.js"></script>
+  <!-- Lity Lightbox -->
+  <script src="../vendors/lity/lity.min.js"></script>
+
+
+	<script src="BlogAssets/vue.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+	body {
+		font-family: 'Noto Sans', sans-serif;
+	}
+	.welcome {
+		border-radius: 10px;
+		min-width: 345px;
+		height: 100%;
+		box-shadow: 1px 2px 4px #ffffff80;
+		top: 11px;
+		position: relative;
+	}
+	@media only screen and (min-width: 767px) {
+		body {
+		/* The file size of this background image is 93% smaller
+		to improve page load speed on mobile internet connections */
+		/* background-image: url("BlogAssets/CoffeeSplash.jpeg"); */
+		}
+		#nature {
+			display: flex;
+			flex-direction: column;
+		}
+		.welcome {
+			margin-top: 20px;
+			border-radius: 10px;
+			min-width: inherit;
+			height: inherit; 
+			box-shadow: 1px 2px 4px #ffffff80;
+			top: 11px;
+			position: relative;
+		}
+	}
+	.refresh {
+		background: white;
+		border-radius: 2px;
+		padding: 8px 16px;
+		color: #a9a9a9;
+		cursor: pointer;
+		display: inline-flex;
+		margin-right:10px;
+		/* display: none; */
+		margin-left: 20px;
+		text-decoration: none;
+	}
+	
+	/* .refresh .material-icons {
+		margin-left: 15px;
+	} */
+
+	.nature {  
+	/* This section calls the slideInFromLeft animation we defined above */
+	animation: 2s ease-out 0s 1 slideInFromLeft;
+	}
+	.nature {
+		padding: 20px;
+		font-weight: 700;
+		font-size: 120px;
+		/* text-align: center; */
+		color: #ffffff;
+		display: flex;
+		border-radius: 4px;
+		text-transform: capitalize;
+		top: 124px;
+	}
+
+	body.edit .nature {
+		box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+		transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+		text-shadow: 2px 2px 3px #c4c4c4;
+		background-color: #ffffff2b;
+	}
+	.show {
+		visibility: hidden;
+		position: absolute;
+	}
+	body.edit .show {
+		visibility: visible !important;
+	}
+	.show-right, .show-left, .show-bottom, .show-top {
+		background: white;
+		border-radius: 2px;
+		color: #a9a9a9;
+		cursor: pointer;
+		display: flex;
+		text-decoration: none;
+		padding: 7px;
+		text-shadow: none;
+	}
+	.show-right {
+		right: -40px;
+		top: 1px;
+	}
+	.show-left {
+		right: -40px;
+		top: 43px;
+	}
+	.show-bottom {
+		right: 44px;
+		top: -39px;
+	}
+	.show-top {
+		right: 1px;
+		top: -39px;
+	}
+	.show:hover {
+		background: cornflowerblue;
+		   color: white;
+	}
+	.refresh:hover {
+		color: gold;
+	}
+	#clone {
+		border-radius: 3px;
+		font-family: monospace;
+		font-size: inherit;
+		padding: 20px;
+		color: grey;
+		line-height: 29px;
+	}
+	p > code,
+	li > code,
+	dd > code,
+	td > code {
+		background: #ffeff0;
+		word-wrap: break-word;
+		box-decoration-break: clone;
+		padding: .1rem .3rem .2rem;
+		border-radius: .2rem;
+	}
+	
+	.cancelCode {
+		top:2px;
+		right: 5px;
+	}
+	.button {
+		font-size: 15px;
+		text-transform: capitalize;
+		color: darkyellow;
+		cursor: pointer;
+		padding: 20px 30px;
+		margin-top: 20px;
+		background: cornflowerblue;
+		color: white;
+		display: flex;
+		font-weight: 600;
+		text-align: center;
+		border-radius: 4px;
+	}
+	.button:hover {
+		color : cornflowerblue;
+		background: white;
+	}
+	
+</style>
+</head>
+
+<body data-anm=".anm" class="" style="background-image: url('BlogAssets/readmore.jpeg'); background-size: cover; background-position: center center; background-attachment: fixed; background-repeat:no-repeat;">
+<!-- <body style=" background-image: url('BlogAssets/visiting.jpeg')"> -->
+
+  <header class="aheto-header aheto-header-5">
+    <div class="aheto-header-5__nav-wrap">
+      <div class="aheto-header-5__inner">
+        <div class="aheto-header-5__line">
+          <div class="aheto-header-5__logo">
+            <div class="logo">
+              <a class="logo__link" href="index.html">
+                <div class="logo__img-holder">
+                  <img class="logo__img" src="../img/home/home-yoga/logo-2.png" alt="Logo image">
+                </div>
+                <div class="logo__text-holder">
+                  <h3 class="logo__text"><span style="color:#EE4038">Bodhi</span>  <span style="color:#27BFF0">Intellect</span></h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="aheto-header-5__menu js-menu js-menu-height">
+            <ul class="main-menu">
+              <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                <a href="index.html">Bodhi</a>
+              </li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                <a href="about-us.html">About Us</a>
+              </li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                <a href="blog.html">Our Blog</a>
+              </li>
+              <!-- <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                <a href="#">Pages</a>
+                <ul class="sub-menu menu-depth-1">
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="services.html">Services</a></li>
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="classes.html">Classes</a></li>
+                </ul>
+              </li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                <a href="#">Blog</a>
+                <ul class="sub-menu menu-depth-1">
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="blog.html">Blog List</a></li>
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="blog-details.html">Blog Details</a></li>
+                </ul>
+              </li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+                <a href="#">Events</a>
+                <ul class="sub-menu menu-depth-1">
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="events.html">Event List</a></li>
+                  <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="event-details.html">Event Details</a></li>
+                </ul>
+              </li> -->
+              <li class="menu-item menu-item-type-custom">
+                <a href="contact-us.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="aheto-header-5__buttons">
+            <div class="aheto-header-5__button">
+              <a class="aheto-header-5__button-link js-open-search" href="#">
+                <!-- <i class="aheto-header-5__button-icon aheto-header-5__button-icon--search"></i> -->
+              </a>
+            </div>
+            <div class="aheto-header-5__button">
+              <a class="aheto-header-5__button-link" href="#">
+                <!-- <i class="aheto-header-5__button-icon aheto-header-5__button-icon--basket icon_cart_alt"></i> -->
+                <!-- <span class="aheto-header-5__button-number">0</span> -->
+              </a>
+            </div>
+          </div>
+          <div class="aheto-header-5__hamburger">
+            <button class="hamburger hamburger--squeeze js-hamburger js-hamburger--body-over" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="aheto-titlebar aheto-titlebar--height-400 aheto-titlebar--yoga">
+    <div class="aheto-titlebar__main   ">
+      <img class="js-bg" alt="" src="../img/yoga/about-us/titlebar-1.png">
+      <div class="aheto-titlebar__overlay  aheto-titlebar__overlay--4 aheto-titlebar__overlay--grad" style="background: linear-gradient(36deg, #ee4038 0%, #34c6f1 100%);"></div>
+      <div class="aheto-titlebar__content w-1200">
+        <div class="aheto-titlebar__text ">
+          <h1 class="aheto-titlebar__title  t-white t-bold  t-uppercase ">Our Blo<span style="color:#7fbc48e3;">g</span></h1>
+        </div>
+      </div>
+      <div class="aheto-titlebar__breadcrumbs t-right  t-white">
+        <ul class="testbreadcrumbs">
+          <li class="breadcrumbs__item">
+            <a href="index.html">
+              Bodhi</a>
+          </li>
+          <li class="breadcrumbs__item current">
+            <a href="blog.html">
+				Our Blog
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+	<section id="app" class="fog magazine">
+		<section style="display: none;">
+			 <a class="refresh"  onclick="editmagazine()">
+				Back &nbsp;
+				<span class="material-icons">
+					history
+				</span>
+			</a> 
+			<a class="refresh"  href="contact-us.html">
+				Contact Us &nbsp;
+				<span class="material-icons">
+					call
+				</span>
+			</a> 
+			
+		</section>
+		
+		<section v-for="Vue in notes" class='nature' id="nature" style="display: flex; " >
+				
+		
+			
+
+		 	<article class="content" style="text-align: justify; font-size:13px; background-color:#fff; color: grey; font-weight: 100; padding: 20px; border-radius: 4px; box-shadow: 1px 2px 4px #54545480; line-height: 24px;">
+				<img :src="Vue.blogimage"  style="
+					width: 100%;
+					height: auto;
+					max-width: 600px;
+					/* margin: auto; */
+					display: block;
+					box-shadow: 0px 0px 5px #8f8f8f;
+					border-radius: 4px;
+					margin-bottom: 10px;">
+					<div class="clearfix"></div>
+					
+				<h2 style="font-weight:600; margin-top: 26px;">{{ Vue.title }}</h2> <br><br>
+				<span style="font-weight:400; color: cornflowerblue;"> By  &nbsp; : {{ Vue.author }}<br><br></span>
+				{{ Vue.subtitle }} <br><br>
+				{{ Vue.Content }}
+
+				 
+				<!-- <span onclick="alert('Succesfully request sent')" class="button" href="javascript:void();" style="font-size:15px; text-transform: capitalize; color:darkyellow; cursor:pointer;"></span> -->
+	
+			</article>
+			<!-- <img src="welcome.png" alt="welcome" class="welcome" contenteditable="false" style=""> -->
+		</section>
+	</section>
+	<footer class="aheto-footer aheto-footer-5">
+		<div class="aheto-footer-5__main">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-sm-6 col-lg-3 contact">
+				<div class="widget widget_aheto ">
+				  <h2 class="widget-title">Contact us</h2>
+				  <div class="widget_aheto__infos">
+					<p class="widget_aheto__info widget_aheto__info--address">
+					  <i class="widget_aheto__icon icon el icon_pin"></i>
+					  .
+						<!-- Bodhi Intellect - 
+						B HUB, Mar Ivanios Vidya Nagar, 
+						Nalanchira Cardinal Cleemis Centre for Innovation and Entrepreneurship, 
+						Kerala - 695015 -->
+					</p>
+					<p class="widget_aheto__info widget_aheto__info--tel">
+					  <i class="widget_aheto__icon icon ion-android-call"></i>
+					  <a class="widget_aheto__link" href="tel:">+ 91 7510 72 67 15</a>
+					</p>
+					<p class="widget_aheto__info widget_aheto__info--mail">
+					  <i class="widget_aheto__icon fa fa-envelope"></i>
+					  <a class="widget_aheto__link" href="mailto:contact@bodhiintellect.com">contact@bodhiintellect.com</a>
+					</p>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col-sm-6 col-lg-3">
+				<section class="widget widget_time_schedule widget_time_schedule_2">
+				  <h2 class="widget-title">We are Open</h2>
+				  <div class="textwidget">
+					<ul>
+					  <li>Monday </li>
+					  <li>Tuesday </li>
+					  <li>Wednesday </li>
+					  <li>Thursday </li>
+					  <li>Friday </li>
+					</ul>
+				  </div>
+				</section>
+			  </div>
+			  <div class="col-sm-6 col-lg-3">
+				<div class="widget widget_nav_menu widget_nav_menu_">
+				  <h2 class="widget-title">Extra LINKS</h2>
+				  <div class="menu-main-container">
+					<ul class="menu">
+					   <li class="menu-item  menu-itesm-type-post_type menu-item-object-page"><a href="about-us.html">About Us</a></li>      
+					</ul>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col-sm-6 col-lg-3">
+				<div class="widget widget_mc4wp_form_widget aheto_mc_2">
+				  <h2 class="widget-title">Follow us</h2>
+				  <!-- <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-223" method="post" data-id="223" data-name="Email">
+					<div class="mc4wp-form-fields"><input type="email" name="EMAIL" placeholder="Your Email" required="">
+					  <button type="submit"><i class="icon fa fa-envelope"></i></button>
+					  <p>Get latest updates and offers.</p>
+					  <p></p>
+					</div>
+					<label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></label><input type="hidden" name="_mc4wp_timestamp" value="1526996980"><input
+					  type="hidden" name="_mc4wp_form_id" value="223"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1">
+					<div class="mc4wp-response"></div>
+				  </form> -->
+				  <!-- / MailChimp for WordPress Plugin -->
+				</div>
+				<div class="aht-socials aht-socials--circle">
+					<a class="aht-socials__link aht-btn--dark aht-btn--trans " target="_blank" href="https://fb.me/bodhintellect">
+						<i class="aht-socials__icon icon ion-social-facebook"></i>
+					</a>
+				  <!-- <a class="aht-socials__link aht-btn--dark aht-btn--trans " href="https://instagram.com/">
+					<i class="aht-socials__icon icon ion-social-instagram"></i>
+				  </a> -->
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="aheto-footer-5__bottom">
+		  <div class="container">
+			<div class="row">
+			  <div class="col-md-6 col-lg-7">
+				<div class="aheto-footer-5__cr margin-lg-15t margin-sm-10b margin-sm-10t">
+				  <p class="aheto-footer-5__cr-text ">© Bodhi Intellect. All Right Reserved 2021.</p>
+				</div>
+			  </div>
+			  <div class="col-md-6 col-lg-5 text-right">
+				<div class="aheto-footer-menu margin-lg-15t margin-sm-0b margin-sm-0t">
+				  <nav class="menu-main-container">
+					<ul class="main-menu">
+					  <li class="menu-item  menu-item-type-post_type menu-item-object-page"><a href="index.html">Bodhi</a></li>
+					  <li class="menu-item  menu-item-type-post_type menu-item-object-page"><a href="contact.html">Term</a></li>
+					  <li class="menu-item  menu-item-type-post_type menu-item-object-page"><a href="contact.html">Help</a></li>
+					  <!-- <li class="menu-item  menu-item-type-post_type menu-item-object-page"><a href="#">Sitemap</a></li> -->
+					</ul>
+				  </nav>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+	<script type="text/javascript">
+	function editmagazine() {
+		// window.document.body.className = 'edit'
+		// document.querySelector('.nature').setAttribute('contenteditable', 'true')
+		window.history.back()
+	}
+	function moveRight() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] + 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.right.split('p')[0] + 10
+		console.info(value)
+		element.style.right = value + "px"
+	}
+	function moveLeft() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.left.split('p')[0] - 10
+		console.info(value)
+		element.style.left = value + "px"
+	}
+	function moveTop() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] - 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function moveBottom() {
+		const element = document.querySelector('.nature')
+		const style = getComputedStyle(element)
+		value = +style.top.split('p')[0] + 10
+		console.info(value)
+		element.style.top = value + "px"
+	}
+	function saveFile() {
+		// Wish
+		
+	}
+	function closeCode() {
+		document.getElementById("clone").innerHTML = ""
+		clone.textContent = document.querySelector('.pre').setAttribute('hidden',"true")
+		document.body.classList.remove('edit')
+	}
+	function changecolor(color) {
+		document.getElementsByClassName('content')[0].style.color = color
+	}
+
+
+
+	var app = new Vue({
+      el: '#app',
+      data: {
+        notes: [
+        { id: 1, title: 'Website Blog', subtitle: 'Our Story', author: "Bodhi Intellect",
+        Content: "Bodhi Intellect is a group of dynamic young professionals who excel in their own field. It includes Psychologists, Yoga Trainers, Nutritionals, IT Experts, Communication and soft skill trainers and Mentors. We are training people on Leadership Development, Marketing and Sales, Team building skills, Communication and Interpersonal effectiveness. We have well devised strategies, tools and course plan much different from the conventional workshops. Being a learning partner to every firm, we focus on training their people not only to achieve best results, but also to live an enlightened life so that the employees will be an asset to the organisation. Our aim is to develop multifaceted and goal oriented professionals who deliver their best in the work place. Our tailor made solutions for each business verticals will identify the talents in the work force, nurture it through fine crafted techniques and will point it to focus on organizational goals in a smart way. We also aim to provide workshops for children to improve their learning and interactive skills through a set of signature programs. We offer counselling services through webinars and seminars on day to day issues faced by the kids and adults. We are using technology at its best to train mind and body. Our program is designed by incorporating well structured group of sessions to develop the in depth abilities, skills interactions and activities. We also give the participants a fine set of values to follow the entire life so that they will perfectly deliver the best to themselves and around.",
+		blogimage: "BlogAssets/welcome.png",
+	},
+        { id: 2, title: 'Conversation Ai', subtitle: 'User Story CAI', author: "Syamnath S",
+        Content: "The conversation Ai is a social communication program that is intended to activate social communication between people. The main aim of the program is to initiate a channel of communication with persons and groups. Contact to know more",
+		blogimage: "BlogAssets/welcome.png",
+    }
+        ],
+      },
+    })
+	</script>
+	
+</body>
+</html>
