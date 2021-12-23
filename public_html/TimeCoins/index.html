@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="clock.js"></script>
+    <title>Scientific Clock</title>
+</head>
+<body>
+    
+<div class="clock-clock" ><canvas id="clockwise"></canvas></div>
+<div class="clock-clock kclock" ><canvas id="anticlockwise"></canvas></div>
+
+<div id="clock"></div>
+<div class="law firstlaw">
+    Objects in motion or at rest remain in the same state unless an external force imposes 
+    <a onclick="changed();" href="javascript:void(0);" style="cursor: pointer; text-decoration: none;" >change</a> 
+</div>
+<div hidden="true" class="law secondlaw">
+    The force acting on an object is <a onclick="Equalise();" href="javascript:void(0);" style="cursor: pointer; text-decoration: none;" >equal</a> to the mass of the object multiplied by its acceleration 
+</div>
+
+<div hidden="true" class="law thirdlaw">
+   For every action, there is an equal and opposite reaction
+</div>
+
+<section hidden="true" class="clock"><span id="timeon">0</span> Timecoins in Wallet</section>
+
+<script>
+    if(localStorage.length == 0) {
+        localStorage.setItem("timeon", "0");
+    }
+    document.getElementById("timeon").innerText = localStorage.timeon
+	function Equalise() {
+    var anticlockwise = {
+		colour: "grey",
+		rimColour:"grey",
+		rim: 1,
+		directionCoefficient: -1,
+		markerType: "numeral"
+	}
+	var anticlockwise = new clock("anticlockwise", anticlockwise);
+	anticlockwise.start();
+    document.getElementsByClassName("secondlaw")[0].setAttribute("hidden","hidden")
+    document.getElementsByClassName("thirdlaw")[0].removeAttribute("hidden")
+    document.getElementsByClassName("clock")[0].removeAttribute("hidden")
+}
+
+    function changed() {
+        var clockwise = {
+		colour: "grey",
+		rimColour:"grey",
+		rim: 1,
+		directionCoefficient: 1,
+		markerType: "numeral"
+        }
+        var clockwise = new clock("clockwise", clockwise);
+        clockwise.start();
+        document.getElementsByClassName("firstlaw")[0].setAttribute("hidden","hidden")
+        document.getElementsByClassName("secondlaw")[0].removeAttribute("hidden")
+    }
+
+    function currentTime() {
+    let date = new Date(); 
+    let hh = date.getHours();
+    let mm = date.getMinutes();
+    let ss = date.getSeconds();
+    let session = "AM";
+
+    if(hh == 0){
+        hh = 12;
+    }
+    if(hh > 12){
+        hh = hh - 12;
+        session = "PM";
+    }
+
+    hh = (hh < 10) ? "0" + hh : hh;
+    mm = (mm < 10) ? "0" + mm : mm;
+    ss = (ss < 10) ? "0" + ss : ss;
+        
+    let time = hh + ":" + mm + ":" + ss + " " + session;
+
+    if(ss == 00) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    if(ss == 30) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    if(mm == 00) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    if(mm == 30) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    if(hh == 00) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    if(hh == 30) {
+        var timeon = parseInt(localStorage.getItem("timeon"));
+        localStorage.setItem("timeon", ++timeon);
+        document.getElementById("timeon").innerText = timeon;
+    }
+
+    let t = setTimeout(function(){ currentTime() }, 1000);
+}
+currentTime();
+
+</script>
+
+<style>
+    body {
+        font-family: 'Noto Sans', sans-serif;
+        color: black;
+    }
+    .clockshoe {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+       
+    }
+    
+    .clock-clock{
+        height: 100%;
+        width: 100%;
+        max-height: 200px;
+        max-width: 200px;
+        display: flex;
+        margin-bottom: 20px;
+        position: absolute;
+        top: 84px;
+    }
+    .kclock {
+        z-index: 2;
+    }
+    </style>
+</body>
+</html>
