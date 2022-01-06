@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,7 @@
     <title>Auspicious Clock</title>
 </head>
 <body>
+<?php ?>
     
 <div class="clock-clock" ><canvas id="clockwise"></canvas></div>
 <div class="clock-clock kclock" ><canvas id="anticlockwise"></canvas></div>
@@ -25,7 +26,7 @@
 </div>
 
 <div hidden="true" class="law thirdlaw">
-   For every action, there is an equal and opposite reaction
+   For every action, there is an equal reaction
 </div>
 
 <section hidden="true" class="Conservation">Energy can neither be created nor destroyed  
@@ -144,5 +145,6 @@ currentTime();
         z-index: 2;
     }
     </style>
+    <?php ?>
 </body>
 </html>

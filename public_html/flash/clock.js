@@ -13,7 +13,7 @@ Date.prototype.addSeconds = function(s){
 	return this;
 }
 
-var auspicious = [0,"","","","","","","","","","","",""];
+var auspicious = [0,"1","2","3","4","5","6","7","8","9"];
 
 var clock = function(id, options){
 	var self = this;
@@ -57,18 +57,8 @@ var clock = function(id, options){
 		secondHand:{
 			length: 1, width: 0.1, 
 			percentile:function(){
-				return (currentDate.getSeconds() + currentDate.getMilliseconds() / 1000) / 60;
-			}},
-		minuteHand:{
-			length: 0.8, width: 0.4, 
-			percentile:function(){
-				return (currentDate.getMinutes() + currentDate.getSeconds() / 60) / 60;
-			}},
-		hourHand:{
-			length: 0.5, width: 0.9, 
-			percentile:function(){
-				return (currentDate.getHours() + currentDate.getMinutes() / 60) / 12;
-			}}
+				return (currentDate.getSeconds() + currentDate.getMilliseconds() / 1000) / 9;
+		 	}}
 	}
 	
 	//set specified options
@@ -165,12 +155,12 @@ var clock = function(id, options){
 		}
 		var directionCoefficient = getValue("directionCoefficient");
 		var markerDistance = getValue("markerDistance");
-		var theta = directionCoefficient * 2 * Math.PI / 12 - Math.PI / 2
-		for(var i = 0; i < 12; i++){
+		var theta = directionCoefficient * 2 * Math.PI / 9 - Math.PI / 2
+		for(var i = 0; i < 9; i++){
 			var markerX =	x + markerDistance * Math.cos(theta);
 			var markerY = y + markerDistance * Math.sin(theta);
 			drawMarker(markerX, markerY, i);
-			theta += directionCoefficient * 2 * Math.PI / 12;
+			theta += directionCoefficient * 2 * Math.PI / 9;
 		}
 	}
 	
@@ -313,4 +303,3 @@ var clockMaker = function(){
 	
 	return maker;
 }
-		

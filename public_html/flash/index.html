@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="clock.js"></script>
+    <title>Flash Clock</title>
+</head>
+<body>
+    
+<div class="clock-clock" ><canvas id="clockwise"></canvas></div>
+
+<div id="clock"></div>
+
+<script>
+
+if(isTouchDevice()) {
+    console.info()
+}
+
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0));
+}
+
+        var clockwise = {
+		colour: "grey",
+		rimColour:"grey",
+		rim: 1,
+		directionCoefficient: 1,
+		markerType: "numeral"
+        }
+        var clockwise = new clock("clockwise", clockwise);
+        clockwise.start();
+
+
+
+
+
+</script>
+
+<style>
+    body {
+        font-family: 'Noto Sans', sans-serif;
+        color: black;
+    }
+    .clockshoe {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+       
+    }
+    
+    .clock-clock{
+        height: 100%;
+        width: 100%;
+        max-height: 360px;
+        max-width: 360px;
+        display: flex;
+        margin-bottom: 20px;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .kclock {
+        z-index: 2;
+    }
+    </style>
+</body>
+</html>
